@@ -59,7 +59,21 @@ Grafana dashboards on the other hand need to be publicly accessible. Since the o
 
 #### Configure Telegraf agent
 
-**TBD**
+Telegraf is an application that collects data from various components or programs on the host that it is running on. The configuration consists of inputs and outputs. For example: an input would be CPU statistics and an output would be pushing that data to an InfluxDB to later display that data in Grafana.
+
+The current Grafana dashboard and Telegraf config assumes that you're running Telegraf on a Windows host.
+
+1. Get the download link for latest Telegraf client from: https://portal.influxdata.com/downloads/ and download it
+2. Create a directory for Telegraf: C:\Program Files\Telegraf
+3. Unzip the .zip file from the download link into this directory. You should now have a directory with a version number in the end.
+4. Go into that directory, move the two files (telegraf.exe, telegraf.conf) back to C:\Program Files\Telegraf and delete the (now empty) Telegraf-directory with a version in its name.
+5. Replace telegraf.conf with the telegraf.conf from this git repo. 
+6. Edit telegraf.conf and head to line 105: `[[outputs.influxdb]]`, update the variables `urls`, `database`, `username`, `password` so they're correct according to your InfluxDB configuration.
+7. Open the Windows command prompt as an Administrator.
+8. In the commando prompt, test the config with: `C:\"Program Files"\Telegraf\telegraf.exe --config C:\"Program Files"\Telegraf\telegraf.conf --test`
+9. All good? Run: `C:\"Program Files"\Telegraf\telegraf.exe --service install --config C:\"Program Files"\Telegraf\telegraf.conf`
+10. When that is done, start the Telegraf Windows service with: `net start telegraf`
+
 
 #### Migrate existing data
 

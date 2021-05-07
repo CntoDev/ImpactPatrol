@@ -13,7 +13,7 @@ Grafana (reachable at `stats.carpenoctem.co`) currently serves two dashboards:
 
 The first dashboard is publicly available, while the monitoring one requires a user login (_if qualified_, ask for credentials to either [SSgts](https://github.com/orgs/CntoDev/teams/ssgt) or [R&D](https://github.com/orgs/CntoDev/teams/rnd) manager).
 
-The incoming data from the monitoring of `main` server is set to be stored for 30 days. This can be changed by altering the existing [retention policies](https://docs.influxdata.com/influxdb/v1.8/guides/downsample_and_retain/) enforced in InfluxDB.
+The incoming data from the monitoring of `main` server is set to be stored for 180 days. This can be changed by altering the existing [retention policies](https://docs.influxdata.com/influxdb/v1.8/guides/downsample_and_retain/) enforced in InfluxDB.
 
 The services have a limited amount of resources to prevent the entire `tools` server from running out for other existing services (see [resource option](https://docs.docker.com/compose/compose-file/compose-file-v3/#resources) for docker-compose). InfluxDB is limited to use 100% of 1 CPU core and 1024MB of memory, while Grafana is limited to 1 CPU core and 512MB of memory of the `tools` server.
 
